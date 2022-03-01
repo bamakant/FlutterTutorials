@@ -10,15 +10,14 @@ class HomePage extends StatelessWidget {
     String codepur = "Codepur";
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("Catalog App"),
+        title: const Text("Catalog App"),
       ),
       body: Center(
-        child: Container(
-          child: Text("Welcome to $days of Flutter by $codepur"),
-        ),
+        child: Text("Welcome to $days of Flutter by $codepur"),
       ),
-      drawer: MyDrawer(),
+      drawer: const MyDrawer(),
     );
   }
 }
