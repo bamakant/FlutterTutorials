@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_catalog/models/catalog.dart';
+import '../widgets/item_widget.dart';
 import '/widgets/drawer.dart';
-
-//Day 11 we learned about context, widget 3 tree and constraints
-// Widget --> Element --> Renterer
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -12,13 +11,20 @@ class HomePage extends StatelessWidget {
     int days = 30;
     String codepur = "Codepur";
 
+    final dummyList = List.generate(10, (index) => CatalogModel.items[0]);
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text("Catalog App"),
       ),
-      body: Center(
-        child: Text("Welcome to $days of Flutter by $codepur"),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ListView.builder(
+            itemCount: dummyList.length,
+            itemBuilder: (context, index) {
+              return ItemWidget(item: dummyList[index]);
+            }),
       ),
       drawer: const MyDrawer(),
     );
