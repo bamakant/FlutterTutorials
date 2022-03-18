@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import '/widgets/drawer.dart';
 
+//Day 11 we learned about context, widget 3 tree and constraints
+// Widget --> Element --> Renterer
+
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
