@@ -13,7 +13,7 @@ class HomeDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MyTheme.creamColor,
-      appBar: AppBar(),
+      appBar: AppBar(backgroundColor: MyTheme.creamColor),
       bottomNavigationBar: Container(
         color: Colors.white,
         child: ButtonBar(
@@ -23,12 +23,12 @@ class HomeDetailsPage extends StatelessWidget {
             "\$ ${catalog.price}".text.xl4.red800.bold.make(),
             ElevatedButton(
               onPressed: () {},
-              child: "Buy".text.xl.bold.make(),
+              child: "Add to Cart".text.xl.bold.make(),
               style: ButtonStyle(
                   backgroundColor:
                       MaterialStateProperty.all(MyTheme.darkBluishColor),
                   shape: MaterialStateProperty.all(const StadiumBorder())),
-            ).wh(100, 50)
+            ).wh(150, 50)
           ],
         ).p32(),
       ),
@@ -56,6 +56,12 @@ class HomeDetailsPage extends StatelessWidget {
                         catalog.desc.text.xl
                             .textStyle(context.captionStyle!)
                             .make(),
+                        "Mihi duco adfero, puer pasco homo aduro missa. Tametsi esse pia illa, renuo uter. Premo picea. Loci letum demum abbas ceterum puteus suus metuo. Suus autus abeo queso putus faenum. Corrigo lenio. Illa quris aurum sequi utrum taceo, pyropus quantum. Frequentatio immineo lacrima opportunitatus."
+                            .text
+                            .textStyle(context.captionStyle!)
+                            .make()
+                            .p16()
+                            .expand(),
                       ],
                     ).py64(),
                   )),
