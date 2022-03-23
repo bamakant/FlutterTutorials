@@ -29,18 +29,24 @@ class _CartTotal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        "\$9999".text.xl4.make(),
-        ElevatedButton(
-          onPressed: () {},
-          child: "Buy".text.make(),
-          style: ButtonStyle(
-              backgroundColor:
-                  MaterialStateProperty.all(context.theme.buttonColor)),
-        ).w32(context),
-      ],
+    return SizedBox(
+      height: 150,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          "\$9999".text.xl4.make(),
+          ElevatedButton(
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: "Buying not supported yet".text.make()));
+            },
+            child: "Buy".text.make(),
+            style: ButtonStyle(
+                backgroundColor:
+                    MaterialStateProperty.all(context.theme.buttonColor)),
+          ).w32(context),
+        ],
+      ),
     );
   }
 }
