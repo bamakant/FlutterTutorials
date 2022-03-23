@@ -12,10 +12,10 @@ class HomeDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyTheme.creamColor,
-      appBar: AppBar(backgroundColor: MyTheme.creamColor),
+      backgroundColor: context.theme.canvasColor,
+      appBar: AppBar(),
       bottomNavigationBar: Container(
-        color: Colors.white,
+        color: context.theme.cardColor,
         child: ButtonBar(
           alignment: MainAxisAlignment.spaceBetween,
           buttonPadding: EdgeInsets.zero,
@@ -26,7 +26,7 @@ class HomeDetailsPage extends StatelessWidget {
               child: "Add to Cart".text.xl.bold.make(),
               style: ButtonStyle(
                   backgroundColor:
-                      MaterialStateProperty.all(MyTheme.darkBluishColor),
+                      MaterialStateProperty.all(context.theme.buttonColor),
                   shape: MaterialStateProperty.all(const StadiumBorder())),
             ).wh(150, 50)
           ],
@@ -47,11 +47,11 @@ class HomeDetailsPage extends StatelessWidget {
                   height: 30.0,
                   child: Container(
                     width: context.screenWidth,
-                    color: Colors.white,
+                    color: context.theme.cardColor,
                     child: Column(
                       children: [
                         catalog.name.text.bold.xl4
-                            .color(MyTheme.darkBluishColor)
+                            .color(context.accentColor)
                             .make(),
                         catalog.desc.text.xl
                             .textStyle(context.captionStyle!)

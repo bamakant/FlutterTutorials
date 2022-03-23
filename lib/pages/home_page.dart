@@ -41,9 +41,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     // final dummyList = List.generate(10, (index) => CatalogModel.items[0]);
     return Scaffold(
-      backgroundColor: MyTheme.creamColor,
+      backgroundColor: context.canvasColor,
       floatingActionButton: FloatingActionButton(
-        backgroundColor: MyTheme.darkBluishColor,
         onPressed: () {
           Navigator.pushNamed(context, MyRoute.cartRoute);
         },
@@ -55,7 +54,7 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CatalogHeader(),
+              const CatalogHeader(),
               if (CatalogModel.items.isNotEmpty)
                 const CatalogList().py16().expand()
               else
