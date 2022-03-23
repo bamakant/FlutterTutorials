@@ -1,13 +1,4 @@
-import 'package:flutter_catalog/models/cart.dart';
-
 class CatalogModel {
-//making this as singleton class
-  static final catalogModel = CatalogModel._internal();
-
-  CatalogModel._internal();
-
-  factory CatalogModel() => catalogModel;
-
   static List<Item> items = [];
 
   Item getById(int id) =>
