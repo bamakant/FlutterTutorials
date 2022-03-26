@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_catalog/core/store.dart';
 import 'package:flutter_catalog/models/cart.dart';
 import 'package:flutter_catalog/utils/routes.dart';
@@ -30,7 +31,7 @@ class _HomePageState extends State<HomePage> {
     // await Future.delayed(const Duration(seconds: 2));
 
     // final catalogJson =
-    //     await rootBundle.loadString("assets/files/catalog.json");
+    // await rootBundle.loadString("assets/files/catalog.json");
     final response = await http.get(Uri.parse(url));
     final catalogJson = response.body;
     final decodedData = jsonDecode(catalogJson);
@@ -55,7 +56,7 @@ class _HomePageState extends State<HomePage> {
           },
           child: const Icon(CupertinoIcons.cart),
         ).badge(
-            color: Vx.gray100,
+            color: Vx.gray200,
             size: 22,
             count: _cart.items.length,
             textStyle: const TextStyle(
