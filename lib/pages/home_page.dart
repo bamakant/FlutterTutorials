@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_catalog/core/store.dart';
 import 'package:flutter_catalog/models/cart.dart';
 import 'package:flutter_catalog/utils/routes.dart';
+import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:http/http.dart' as http;
 
@@ -45,12 +46,11 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     // final dummyList = List.generate(10, (index) => CatalogModel.items[0]);
-    final _cart = (VxState.store as MyStore).cartModel;
+    // final _cart = (VxState.store as MyStore).cartModel;
     return Scaffold(
       backgroundColor: context.canvasColor,
-      floatingActionButton: VxBuilder(
-        mutations: const {AddMutation, RemoveMutation},
-        builder: (context, store, status) => FloatingActionButton(
+      floatingActionButton: Consumer<CartModel>(
+        builder: (context, cart, child) => FloatingActionButton(
           onPressed: () {
             Navigator.pushNamed(context, MyRoute.cartRoute);
           },
@@ -58,7 +58,7 @@ class _HomePageState extends State<HomePage> {
         ).badge(
             color: Vx.gray200,
             size: 22,
-            count: _cart.items.length,
+            count: cart.items.length,
             textStyle: const TextStyle(
                 color: Colors.black, fontWeight: FontWeight.bold)),
       ),

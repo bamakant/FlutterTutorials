@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_catalog/core/store.dart';
 import 'package:flutter_catalog/models/cart.dart';
+import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class CartPage extends StatelessWidget {
@@ -31,16 +32,15 @@ class _CartTotal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _cart = (VxState.store as MyStore).cartModel;
+    // final _cart = (VxState.store as MyStore).cartModel;
     return SizedBox(
       height: 150,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          VxBuilder(
-            mutations: const {RemoveMutation},
-            builder: (BuildContext context, store, VxStatus? status) {
-              return "\$${_cart.totalPrice}".text.xl4.make();
+          Consumer<CartModel>(
+            builder: (context, cart, child) {
+              return "\$${cart.totalPrice}".text.xl4.make();
             },
           ),
           ElevatedButton(
@@ -62,19 +62,24 @@ class _CartTotal extends StatelessWidget {
 class _CartList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    VxState.watch(context, on: [RemoveMutation]);
-    final CartModel _cart = (VxState.store as MyStore).cartModel;
-    return !_cart.items.isNotEmpty
-        ? "No items to show".text.xl3.makeCentered()
-        : ListView.builder(
-            itemCount: _cart.items.length,
-            itemBuilder: (context, index) => ListTile(
-              leading: const Icon(Icons.done),
-              title: _cart.items[index].name.text.make(),
-              trailing: IconButton(
-                  onPressed: () => RemoveMutation(_cart.items[index]),
-                  icon: const Icon(Icons.remove_circle_outline_outlined)),
-            ),
-          );
+    // VxState.watch(context, on: [RemoveMutation]);
+    // final CartModel _cart = (VxState.store as MyStore).cartModel;
+
+    return Consumer<CartModel>(
+      builder: (context, cart, child) {
+        return !cart.items.isNotEmpty
+            ? "No items to show".text.xl3.makeCentered()
+            : ListView.builder(
+                itemCount: cart.items.length,
+                itemBuilder: (context, index) => ListTile(
+                  leading: const Icon(Icons.done),
+                  title: cart.items[index].name.text.make(),
+                  trailing: IconButton(
+                      onPressed: () => cart.RemoveItem(cart.items[index]),
+                      icon: const Icon(Icons.remove_circle_outline_outlined)),
+                ),
+              );
+      },
+    );
   }
 }

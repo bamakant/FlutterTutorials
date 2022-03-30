@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_catalog/core/store.dart';
+import 'package:flutter_catalog/models/cart.dart';
 import 'package:flutter_catalog/pages/cart_page.dart';
 import 'package:flutter_catalog/utils/routes.dart';
 import 'package:flutter_catalog/widgets/themes.dart';
-import 'package:velocity_x/velocity_x.dart';
+import 'package:provider/provider.dart';
 import 'pages/login_page.dart';
 import 'pages/home_page.dart';
 
 void main() {
-  runApp(VxState(store: MyStore(), child: const MyApp()));
+  runApp(ChangeNotifierProvider(
+      create: (context) => CartModel(), child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
